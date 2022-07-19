@@ -1,14 +1,16 @@
 public class Bus extends Transfortation {
     private static int busNumber = 0;
+    private int feeSum;
+    private int currPassangers;
 
     Bus() {
         super();
-        data.replace("number", busNumber);
-        data.replace("maxPassangerNumber", 30);
-        data.replace("fee", 1000);
-        data.put("feeSum", 0);
-        data.put("currPassangers", 0);
-        status = "운행중";
+        number = busNumber;
+        maxPassangerNumber = 30;
+        fee = 1000;
+        feeSum = 0;
+        currPassangers = 0;
+        status = "";
         busNumber++;
 
         // 운행 종료 및 주유량이 0이 될 시 "차고지행"
@@ -20,17 +22,19 @@ public class Bus extends Transfortation {
     }
 
 
-
     //승객 탑승
     public void boarding(int n) {
+        String result = "";
         System.out.printf("승객 %d명 탑승 시도 ", n);
-        if ((data.get("maxPassangerNumber") >= data.get("currPassangers") + n) && status == "운행중") {{
-            data.replace("currPassangers", data.get("currPassangers") + n);
-            data.replace("feeSum", data.get("feeSum") + n * data.get("fee"));
-            System.out.println(n + "명 탑승");
-        }
+        if ((maxPassangerNumber >= currPassangers + n) && status == "운행중") {
+            {
+                currPassangers += n;
+                feeSum += n * fee;
+                System.out.println(n + "명 탑승");
+                System.out.println(String.format("b1 [탑승 승객 수:%d, 잔여 승객 수:%d,요금 확인:%d]\n", currPassangers, maxPassangerNumber - currPassangers, feeSum));
+            }
         } else {
-            System.out.println("‘최대 승객 수 초과’");
+            System.out.println("최대 승객 수 초과");
         }
         //최대 승객수 이하 및 운행중 상태에서만 가능
         //탑승 시 현재 승객 수 증가
@@ -44,25 +48,25 @@ public class Bus extends Transfortation {
     }
 
     @Override
-    public void addFuel(int n){
+    public void setFuel(int n) {
         System.out.println("버스 주유량 변화 : " + n);
-        data.replace("fuel", data.get("fuel") + n);
-        if(data.get("fuel") < 10){
+        fuel += n;
+        if (fuel < 10) {
             System.out.println("주유 필요");
         }
-        if(data.get("fuel") < 10){
+        if (fuel < 10) {
             this.setStatus("차고지행");
         }
+
+        System.out.printf("b1 [상태:%s, 주유량:%d]\n", status, fuel);
     }
 
     @Override
     public void setStatus(String status) {
-        if(status == "차고지행")
-        {
-            data.replace("maxPassangerNumber", 30);
-            data.replace("currPassangers", 0);
-            data.replace("feeSum", 0);
-
+        if (status == "차고지행") {
+            maxPassangerNumber = 30;
+            currPassangers = 0;
+            feeSum = 0;
         }
 
         this.status = status;
