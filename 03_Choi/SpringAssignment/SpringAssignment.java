@@ -8,24 +8,26 @@ public class SpringAssignment {
         Taxi t2 = new Taxi(4885);
 
         // 각 Bus 번호 다른지 확인
-        System.out.printf("b1 [버스번호:%03d]\n", b1.getNumber());
-        System.out.printf("b2 [버스번호:%03d]\n", b2.getNumber());
+        System.out.println("=============버스 번호 확인============");
+        System.out.printf("b1 : " + b1);
+        System.out.printf("b2 : " + b2);
 
         System.out.println("=============버스 시나리오 시작=============");
-        b1.boarding(2);
-        b1.setFuel(-50);
-        b1.setStatus("차고지행");
-        b1.setFuel(10);
-        b1.setStatus("운행중");
+        b1.boarding(2); // 승객 2명 탑승
+        b1.setFuel(-50); // 연료감소 -50
+        b1.setStatus("차고지행"); // 상태 변화 - 차고지행
+        b1.setFuel(10); // 차고지행, 연료 증가 10
+        b1.setStatus("운행"); //
         b1.boarding(45);
         b1.boarding(5);
         b1.setFuel(-55);
 
-        System.out.println("==============시나리오 종료===============");
+        System.out.println("==============버스 시나리오 종료===============\n");
 
-        //생성자에 작성하기
-        System.out.printf("t1 [택시번호:%04d, 연료량:%d, 상태:%s]\n", t1.getNumber(), t1.getFuel(), t1.getStatus());
-        System.out.printf("t2 [택시번호:%04d, 연료량:%d, 상태:%s]\n", t2.getNumber(), t2.getFuel(), t2.getStatus());
+
+        System.out.println("=============택시 상태 확인============");
+        System.out.printf("t1 : " + t1);
+        System.out.printf("t2 : " + t2);
 
         System.out.println("=============택시 시나리오 시작=============");
         t1.boarding(2, "서울역", 2);

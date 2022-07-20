@@ -9,10 +9,12 @@ abstract class Transfortation {
     protected int maxPassangerNumber;
     protected int passangers;
     protected int fee;
+    protected int feeSum;
+    protected  int seat;
     protected String status;
 
 
-    abstract public void drive();
+    abstract public void drive(int vel, int fuel);
 
     abstract void boarding(int num);
 
@@ -21,7 +23,7 @@ abstract class Transfortation {
     }
 
     public void setVelocity(int vel) {
-        velocity = vel;
+        velocity += vel;
     }
 
 
@@ -40,4 +42,6 @@ abstract class Transfortation {
     public int getNumber(){
         return number;
     }
+
+
 }
